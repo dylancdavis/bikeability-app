@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Banner from "./components/Banner";
 import geonamesService from "./services/geonamesService";
+import { TextField, Autocomplete } from "@mui/material";
 
 function App() {
   const [states, setStates] = useState([]);
@@ -16,13 +17,11 @@ function App() {
     <div className="App">
       <Banner />
       {console.log("states", states)}
-      {states.map((s) => {
-        return (
-          <div key={s.adminCode1}>
-            {s.name} ({s.adminCode1})
-          </div>
-        );
-      })}
+      <Autocomplete
+        options={states.map((s) => s.name)}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="State" />}
+      />
     </div>
   );
 }

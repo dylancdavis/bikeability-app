@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import Banner from './components/Banner'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
   
   return (
   <div className="App">
+    <Banner />
     {cities.map(c => {
       return (<div key={c.name}>{c.name}</div>)
     })}

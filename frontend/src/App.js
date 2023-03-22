@@ -1,5 +1,19 @@
+import {useState, useEffect} from 'react'
+
 function App() {
-  return <div className="App">Hello World</div>;
+
+  const [cities, setCities] = useState([])
+
+  useEffect(() => setCities([{name: 'Denver'}, {name: 'Madison'}]), [])
+  
+  return (
+  <div className="App">
+    {cities.map(c => {
+      return (<div key={c.name}>{c.name}</div>)
+    })}
+  </div>
+  )
+
 }
 
 export default App;

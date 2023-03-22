@@ -10,6 +10,11 @@
   "author": "Dylan Davis",
   "license": "MIT",
   "devDependencies": {
+    "nodemon": "^2.0.21",
     "prettier": "2.8.6"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
   }
 }

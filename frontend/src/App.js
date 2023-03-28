@@ -45,6 +45,11 @@ function App() {
     };
   });
 
+  const handleStateChange = (e, newValue) => {
+    setSelectedState(newValue);
+    if (!newValue) setSelectedCity(null);
+  };
+
   const wrapperStyle = {
     display: "flex",
     gap: "16px",
@@ -58,7 +63,7 @@ function App() {
         <Autocomplete
           options={stateOptions}
           value={selectedState}
-          onChange={(e, newValue) => setSelectedState(newValue)}
+          onChange={handleStateChange}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="State" />}
         />
@@ -68,8 +73,9 @@ function App() {
           onChange={(e, newValue) => setSelectedCity(newValue)}
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="City" />}
+          disabled={!selectedState}
         />
-        <Button>Check</Button>
+        <Button disabled={!selectedCity || !selectedState}>Check</Button>
       </div>
     </Container>
   );

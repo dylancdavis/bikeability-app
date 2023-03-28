@@ -3,9 +3,12 @@ const morgan = require("morgan");
 const cors = require("cors");
 const State = require("./models/state");
 const City = require("./models/city");
+const config = require("./utils/config");
+const mongoose = require("mongoose");
 
 const app = express();
-const PORT = 3001;
+
+mongoose.connect(config.MONGO_URI);
 
 // Initialize utilities
 app.use(cors());
@@ -22,6 +25,6 @@ app.get("/api/locations/cities", async (req, res) => {
   response.json(cities);
 });
 
-app.listen(PORT, () => {
-  `Server running on port ${PORT}`;
+app.listen(config.PORT, () => {
+  `Server running on port ${config.PORT}`;
 });

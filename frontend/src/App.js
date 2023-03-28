@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import Banner from "./components/Banner";
 import { Container, TextField, Autocomplete, Button } from "@mui/material";
+import Banner from "./components/Banner";
+import WalkScore from "./components/WalkScore";
 import placeService from "./services/placeService";
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
         />
         <Button disabled={!selectedCity || !selectedState}>Check</Button>
       </div>
+      <WalkScore />
     </Container>
   );
 }

@@ -12,12 +12,12 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
 
-app.get("/locations/states", async (req, res) => {
+app.get("/api/locations/states", async (req, res) => {
   const states = await State.find({});
   response.json(states);
 });
 
-app.get("/locations/states", async (req, res) => {
+app.get("/api/locations/cities", async (req, res) => {
   const cities = await City.find({});
   response.json(cities);
 });

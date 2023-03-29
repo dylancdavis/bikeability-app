@@ -57,28 +57,30 @@ function App() {
   };
 
   return (
-    <Container className="App">
+    <div className="App">
       <Banner />
-      <div style={wrapperStyle}>
-        <Autocomplete
-          options={stateOptions}
-          value={selectedState}
-          onChange={handleStateChange}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="State" />}
-        />
-        <Autocomplete
-          options={cityOptions}
-          value={selectedCity}
-          onChange={(e, newValue) => setSelectedCity(newValue)}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="City" />}
-          disabled={!selectedState}
-        />
-        <Button disabled={!selectedCity || !selectedState}>Check</Button>
-      </div>
-      {selectedCity && <WalkScore city={selectedCity} />}
-    </Container>
+      <Container>
+        <div style={wrapperStyle}>
+          <Autocomplete
+            options={stateOptions}
+            value={selectedState}
+            onChange={handleStateChange}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="State" />}
+          />
+          <Autocomplete
+            options={cityOptions}
+            value={selectedCity}
+            onChange={(e, newValue) => setSelectedCity(newValue)}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="City" />}
+            disabled={!selectedState}
+          />
+          <Button disabled={!selectedCity || !selectedState}>Check</Button>
+        </div>
+        {selectedCity && <WalkScore city={selectedCity} />}
+      </Container>
+    </div>
   );
 }
 

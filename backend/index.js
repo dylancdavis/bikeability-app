@@ -7,6 +7,11 @@ const config = require("./utils/config");
 const mongoose = require("mongoose");
 const axios = require("axios");
 
+const errorHandler = require("./utils/errorHandler.js");
+
+require("dotenv").config();
+require("express-async-errors");
+
 const app = express();
 
 mongoose.connect(config.MONGO_URI);
@@ -29,8 +34,14 @@ app.get("/api/locations/cities/:stateId", async (req, res) => {
 
 app.get("/api/scores", async (req, res) => {
   const { address, lat, lng } = req.query;
-  res.send(address + lat + lng);
+  const apiUrl = "https://api.walkscore.com/score";
+  const scores = await axios.get(
+    `${apiUrl}?format=json&address=${address}&lat=${lat}&lon=${lng}&bike=1&wsapikey=${process.env.WALK_SCORE_KEY}`
+  );
+  res.send(scores.data);
 });
+
+app.use(errorHandler);
 
 app.listen(config.PORT, () => {
   `Server running on port ${config.PORT}`;

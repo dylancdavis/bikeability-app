@@ -10,7 +10,7 @@ const getScoresByCity = async (city) => {
   const response = await axios.get(
     `http://localhost:3001/api/scores/?address=${address}&lat=${city.lat}&lng=${city.lng}`
   );
-  console.log("response", response);
+  console.log("response data:", response.data);
   return response.data;
 };
 

@@ -12,7 +12,7 @@ const WalkScore = ({ city }) => {
     getScores();
   }, [city]);
 
-  return <div>{scores ? scores.walkscore : "Loading"}</div>;
+  return <div>{scores ? `Bike Score: ${scores.bike.score}` : "Loading"}</div>;
 };
 
 export default WalkScore;

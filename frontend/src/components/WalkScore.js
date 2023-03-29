@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import walkScoreService from "../services/walkScoreService";
 
-const WalkScore = () => {
-  const [data, setData] = useState(null);
+const WalkScore = ({ city }) => {
+  const [scores, setScores] = useState(null);
 
   useEffect(() => {
     const getScores = async function () {
-      const data = await walkScoreService.getScoresByCity("Seattle", "WA");
-      setData(data);
+      const scoresResponse = await walkScoreService.getScoresByCity(city);
+      setScores(scoresResponse);
     };
     getScores();
-  }, []);
+  }, [city]);
 
-  return <div>{data ? data.walkscore : "Loading"}</div>;
+  return <div>{scores ? scores.walkscore : "Loading"}</div>;
 };
 
 export default WalkScore;

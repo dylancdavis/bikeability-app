@@ -5,6 +5,7 @@ const State = require("./models/state");
 const City = require("./models/city");
 const config = require("./utils/config");
 const mongoose = require("mongoose");
+const axios = require("axios");
 
 const app = express();
 
@@ -17,12 +18,18 @@ app.use(morgan("tiny"));
 
 app.get("/api/locations/states", async (req, res) => {
   const states = await State.find({});
-  response.json(states);
+  res.json(states);
 });
 
-app.get("/api/locations/cities", async (req, res) => {
-  const cities = await City.find({});
-  response.json(cities);
+app.get("/api/locations/cities/:stateId", async (req, res) => {
+  const stateId = req.params.stateId;
+  const cities = await City.find({ state_id: stateId });
+  res.json(cities);
+});
+
+app.get("/api/scores", async (req, res) => {
+  const { address, lat, lng } = req.query;
+  res.send(address + lat + lng);
 });
 
 app.listen(config.PORT, () => {

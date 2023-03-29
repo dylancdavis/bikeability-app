@@ -22,9 +22,8 @@ function App() {
   useEffect(() => {
     if (!selectedState) return;
     const getCities = async function () {
-      const data = await placeService.getAllCities();
-      const citiesInState = data.filter(
-        (c) => c.state_id === selectedState.state_id
+      const citiesInState = await placeService.getCityByState(
+        selectedState.state_id
       );
       console.log("citiesInState", citiesInState);
       setCities(citiesInState);
@@ -78,7 +77,7 @@ function App() {
         />
         <Button disabled={!selectedCity || !selectedState}>Check</Button>
       </div>
-      <WalkScore />
+      {selectedCity && <WalkScore city={selectedCity} />}
     </Container>
   );
 }

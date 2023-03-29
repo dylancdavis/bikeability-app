@@ -1,16 +1,16 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl = "http://localhost:3001/api/locations";
 
 const getAllStates = async () => {
   const response = await axios.get(`${baseUrl}/states`);
   return response.data;
 };
 
-const getAllCities = async () => {
-  const response = await axios.get(`${baseUrl}/cities`);
+const getCityByState = async (state_id) => {
+  const response = await axios.get(`${baseUrl}/cities/${state_id}`);
   return response.data;
 };
 
-const placeService = { getAllStates, getAllCities };
+const placeService = { getAllStates, getCityByState };
 export default placeService;
